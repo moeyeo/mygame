@@ -14,27 +14,27 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
  
 public class GameScreen extends ScreenAdapter {
-    private MyGame myGame;
-    private Texture humanImg;
-    private Human human;
+    MyGame myGame;
+    Human human;
+    World world;
+    WorldRenderer worldRenderer;
     
     public GameScreen(MyGame myGame) {
         this.myGame = myGame;
-        humanImg = new Texture("human1.png");
-        human = new Human(100,50);
+        world = new World(myGame);
+        human = world.getHuman();
+        worldRenderer = new WorldRenderer(myGame,world);
     }
     @Override
     public void render(float delta) {
         update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        SpriteBatch batch = myGame.batch;
-        batch.begin();
-        Vector2 pos = human.getPosition();
-        batch.draw(humanImg, pos.x, pos.y);
-        batch.end();;
+        
+        worldRenderer.render(delta);
     }
     private void update(float delta) {
+        
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
             human.move(1);
         }

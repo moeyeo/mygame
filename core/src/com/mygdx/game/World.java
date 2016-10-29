@@ -5,10 +5,17 @@
  */
 package com.mygdx.game;
 
-/**
- *
- * @author Moeyeo
- */
+
 public class World {
+    private Human human;
+    private MyGame myGame;
     
+    World(MyGame myGame) {
+        this.myGame = myGame;
+        human = new Human(50,50);
+    }
+    
+    Human getHuman(){
+        return human;
+    }
 }

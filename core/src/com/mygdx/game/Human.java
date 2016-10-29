@@ -22,10 +22,10 @@ public class Human {
     public void move(int dir) { 
         switch(dir) {
         case -1:
-            position.x += 10;
+            position.x += speed;
             break;
         case 1:
-            position.x -= 10;
+            position.x -= speed;
             break;
         }
     }
