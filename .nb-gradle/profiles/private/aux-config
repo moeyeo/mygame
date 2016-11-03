@@ -4,20 +4,18 @@
   <auxiliary>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/StageRender.java</file>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/World.java</file>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/GameScreen.java</file>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/WorldRenderer.java</file>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/Stage.java</file>
-      </group>
+      <group/>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/WorldRenderer.java</file>
-        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/StageRender.java</file>
+        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/GameScreen.java</file>
+        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/World.java</file>
         <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/Rock.java</file>
+        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/WorldRenderer.java</file>
+        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/Coin.java</file>
+        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/Human.java</file>
+        <file>file:/C:/Users/Chattiwa/Desktop/OOP/core/src/com/mygdx/game/Rock1.java</file>
       </group>
     </open-files>
   </auxiliary>

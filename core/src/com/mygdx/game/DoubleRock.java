@@ -8,11 +8,16 @@ package com.mygdx.game;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
-public class Coin {
+/**
+ *
+ * @author Moeyeo
+ */
+public class DoubleRock {
+    
     private Vector2 position;
     Random rand = new Random();
     
-    public Coin(int x, int y) {
+    public DoubleRock(int x, int y) {
         position = new Vector2(x,y);
     }    
  
@@ -21,10 +26,10 @@ public class Coin {
     }
     
     public void move(int speed) {
-        if(position.y<0){
-            position.y = rand.nextInt(4000)+900;
-            position.x = rand.nextInt(800)+100;
+        if(position.y<-150){
+            position.y = position.y = rand.nextInt(4000)+1500;
         }
         position.y -= speed;
     }
+    
 }
