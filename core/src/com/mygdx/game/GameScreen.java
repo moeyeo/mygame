@@ -22,6 +22,7 @@ public class GameScreen extends ScreenAdapter {
     Rock rock1;
     Rock rock2;
     Rock rock3;
+    Tree tree;
     DoubleRock doubleRock1;
     DoubleRock doubleRock2;
     int speed;
@@ -35,6 +36,7 @@ public class GameScreen extends ScreenAdapter {
         rock1 = world.getRock(1);
         rock2 = world.getRock(2);
         rock3 = world.getRock(3);
+        tree = world.getTree();
         doubleRock1 = world.getDoubleRock(1);
         doubleRock2 = world.getDoubleRock(2);
     }
@@ -54,6 +56,7 @@ public class GameScreen extends ScreenAdapter {
             human.move(-1);
         }
         if(Gdx.input.isKeyPressed(Keys.UP)) {
+            tree.move(speed);
             coin.move(speed);
             rock1.move(speed+2);
             rock2.move(speed+2);
@@ -61,7 +64,8 @@ public class GameScreen extends ScreenAdapter {
             doubleRock1.move(speed+2);
             doubleRock2.move(speed+2);
         }
-        coin.move(speed-3);
+        tree.move(speed-2);
+        coin.move(speed-2);
         rock1.move(speed);
         rock2.move(speed);
         rock3.move(speed);

@@ -6,12 +6,13 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
+import java.util.Random;
 
 /**
  *
  * @author Moeyeo
  */
-public class Stage {
+public class Tree {
     private Vector2 position;
  
     public Tree(int x, int y) {
@@ -23,8 +24,8 @@ public class Stage {
     }
     
     public void move(int speed) {
-        if(position.y<-900){
-            position.y = 900;
+        if(position.y<=-900){
+            position.y = 0;
         }
         position.y -= speed;
     }

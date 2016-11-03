@@ -15,14 +15,28 @@ import java.util.Random;
 public class Rock {
     
     private Vector2 position;
+    private Vector2 rockSize;
+    int rockWidth = 160,rockHeight = 160;
     Random rand = new Random();
+    
  
     public Rock(int x, int y) {
         position = new Vector2(x,y);
+        rockSize = new Vector2(x,y);
     }    
  
     public Vector2 getPosition() {
         return position;    
+    }
+    
+    public Vector2 Size() {
+        for(int i=0 ; i <= rockWidth ; i++){
+            for(int j=0 ; j <= rockHeight ; j++){
+                rockSize.x = i;
+                rockSize.y = j;
+            }
+        }
+        return rockSize;
     }
     
     public void move(int speed) {

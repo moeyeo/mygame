@@ -15,19 +15,26 @@ public class WorldRenderer {
     private Rock rock1;
     private Rock rock2;
     private Rock rock3;
+    private Tree tree;
     private DoubleRock doubleRock1;
     private DoubleRock doubleRock2;
     private Texture humanImg;
     private Texture coinImg;
     private Texture rockImg;
+    private Texture treeImg;
     private Texture doubleRockImg;
-    private Texture floor;
+    private Texture floorImg;
     public SpriteBatch batch;
     private BitmapFont font;
+    private Vector2 rock1Size;
+    private Vector2 rock2Size;
+    private Vector2 rock3Size;
+    private Vector2 humanSize;
     
     public WorldRenderer(MyGame myGame, World world) {
         this.myGame = myGame;
         this.world = world;
+        
         human = world.getHuman();
         humanImg = new Texture("human.png");
         
@@ -39,19 +46,26 @@ public class WorldRenderer {
         rock3 = world.getRock(3);
         rockImg = new Texture("rock.png");
         
+        tree = world.getTree();
+        treeImg = new Texture("grass2.png");
+        
         doubleRock1 = world.getDoubleRock(1);
         doubleRock2 = world.getDoubleRock(2);
         doubleRockImg = new Texture("rock2.png");
         
-        floor = new Texture("floor1.jpg");
+        floorImg = new Texture("floor1.jpg");
         
         font = new BitmapFont();
+        
         batch = myGame.batch;
         }
     
     public void render(float delta) {
         batch.begin();
-        batch.draw(floor, 0, 0);
+        batch.draw(floorImg, 0, 0);
+        Vector2 pos3 = tree.getPosition();
+        batch.draw(treeImg, pos3.x, pos3.y);
+        batch.draw(treeImg, pos3.x+550, pos3.y);
         Vector2 pos = human.getPosition();
         batch.draw(humanImg, pos.x, pos.y);
         Vector2 pos1 = coin.getPosition();
@@ -68,6 +82,13 @@ public class WorldRenderer {
         batch.draw(doubleRockImg, posd1.x, posd1.y);
         font.draw(batch,""+world.getScore(),250, 850);
         batch.end();
+        this.isOver();
     }
     
+    private void isOver() {
+        rock1Size = rock1.Size();
+        rock2Size = rock2.Size();
+        rock3Size = rock3.Size();
+        humanSize = human.Size()
+    } 
 }

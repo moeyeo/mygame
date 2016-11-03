@@ -23,7 +23,7 @@ public class Coin {
     public void move(int speed) {
         if(position.y<0){
             position.y = rand.nextInt(4000)+900;
-            position.x = rand.nextInt(800)+100;
+            position.x = rand.nextInt(600)+50;
         }
         position.y -= speed;
     }

@@ -9,14 +9,30 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Human {
     private Vector2 position;
-    private int speed = 10;
+    private Vector2 humanSize;
+    private int speed = 10,width=60,height=100;
  
     public Human(int x, int y) {
         position = new Vector2(x,y);
+        humanSize = new Vector2(x,y);
     }    
  
     public Vector2 getPosition() {
+        if(position.x<=50)
+            position.x = 50;
+        if(position.x>=500)
+            position.x = 500;
         return position;    
+    }
+    
+    public Vector2 Size() {
+        for(int i=0 ; i <= width ; i++){
+            for(int j=0 ; j <= height ; j++){
+                humanSize.x = i;
+                humanSize.y = j;
+            }
+        }
+        return humanSize;
     }
     
     public void move(int dir) { 

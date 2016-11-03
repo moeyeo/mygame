@@ -17,6 +17,7 @@ public class World {
     private Rock rock1;
     private Rock rock2;
     private Rock rock3;
+    private Tree tree;
     private DoubleRock doubleRock1;
     private DoubleRock doubleRock2;
     Timer timer = new Timer();
@@ -27,13 +28,14 @@ public class World {
         coin = new Coin(rand.nextInt(1000)+50,900);
         rock1 = new Rock(50,900);
         rock2 = new Rock(216,200);
-        rock3 = new Rock(370,1800);
-        doubleRock1 = new DoubleRock(166,500);
+        rock3 = new Rock(382,1800);
+        tree = new Tree(0,0);
+        doubleRock1 = new DoubleRock(200,500);
         doubleRock2 = new DoubleRock(50,1500);
-        updateScore();
+        updateTime();
     }
     
-    void updateScore(){
+    void updateTime(){
         score = System.nanoTime()/10^9;
     }
     Human getHuman(){
@@ -42,6 +44,10 @@ public class World {
     
     Coin getCoin(){
         return coin;
+    }
+    
+    Tree getTree(){
+        return tree;
     }
     
     Rock getRock(int x){
