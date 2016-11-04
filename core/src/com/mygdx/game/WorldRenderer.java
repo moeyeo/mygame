@@ -29,7 +29,7 @@ public class WorldRenderer {
     private Vector2 rock1Size;
     private Vector2 rock2Size;
     private Vector2 rock3Size;
-    private Vector2 humanSize;
+    private int[][] humanSize;
     
     public WorldRenderer(MyGame myGame, World world) {
         this.myGame = myGame;
@@ -80,15 +80,15 @@ public class WorldRenderer {
         batch.draw(doubleRockImg, posd.x, posd.y);
         Vector2 posd1 = doubleRock2.getPosition();
         batch.draw(doubleRockImg, posd1.x, posd1.y);
-        font.draw(batch,""+world.getScore(),250, 850);
+        //font.draw(batch,""+world.getTime(),250, 850);
         batch.end();
-        this.isOver();
+        //this.isOver();
     }
     
     private void isOver() {
         rock1Size = rock1.Size();
         rock2Size = rock2.Size();
         rock3Size = rock3.Size();
-        humanSize = human.Size()
+        humanSize = human.Size();
     } 
 }

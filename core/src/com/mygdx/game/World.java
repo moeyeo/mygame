@@ -12,7 +12,7 @@ public class World {
     private Human human;
     private MyGame myGame;
     Random rand = new Random();
-    private float score;
+    private float time;
     private Coin coin;
     private Rock rock1;
     private Rock rock2;
@@ -36,7 +36,7 @@ public class World {
     }
     
     void updateTime(){
-        score = System.nanoTime()/10^9;
+        time = System.nanoTime()/10^9;
     }
     Human getHuman(){
         return human;
@@ -68,7 +68,7 @@ public class World {
         return doubleRock1;
     }
     
-    double getScore() {
-        return score;
+    double getTime() {
+        return time;
     }
 }
