@@ -4,13 +4,15 @@ package com.mygdx.game;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
-public class DoubleRock {
-    
+/**
+ *
+ * @author Moeyeo
+ */
+public class Clock {
     private Vector2 position;
-    private int WIDTH = 320,HEIGHT = 160;
     Random rand = new Random();
     
-    public DoubleRock(int x, int y) {
+    public Clock(int x, int y) {
         position = new Vector2(x,y);
     }    
  
@@ -19,19 +21,15 @@ public class DoubleRock {
     }
     
     public void move(int speed) {
-        if(position.y <- 150){
-            //position.y = position.y = rand.nextInt(4000)+1500;
-            //position.y = 1200;
+        if(position.y<-50){
+            position.y = rand.nextInt(4000)+900;
+            position.x = rand.nextInt(500)+50;
         }
         position.y -= speed;
     }
     
-    public int width() {
-        return WIDTH;
-    }
-    
-    public int height() {
-        return HEIGHT;
-    }
+    public void delete(Vector2 pos) {
+        position.y = -50;
+    }  
     
 }

@@ -21,10 +21,14 @@ public class Coin {
     }
     
     public void move(int speed) {
-        if(position.y<0){
+        if(position.y<-50){
             position.y = rand.nextInt(4000)+900;
-            position.x = rand.nextInt(600)+50;
+            position.x = rand.nextInt(500)+50;
         }
         position.y -= speed;
     }
+    
+    public void delete(Vector2 pos) {
+        position.y = -50;
+    }   
 }
