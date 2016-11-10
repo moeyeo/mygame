@@ -24,14 +24,14 @@ public class World {
     World(MyGame myGame) {
         this.myGame = myGame;
         human = new Human(50,50);
-        coin = new Coin(rand.nextInt(1000)+50,900);
-        clock = new Clock(rand.nextInt(1000)+50,1200);
-        rock1 = new Rock(50,900);
-        rock2 = new Rock(216,200);
-        rock3 = new Rock(382,1800);
         tree = new Tree(0,0);
-        doubleRock1 = new DoubleRock(200,500);
-        doubleRock2 = new DoubleRock(50,1500);
+        coin = new Coin(rand.nextInt(500)+50,900);
+        clock = new Clock(rand.nextInt(500)+50,2000);
+        rock1 = new Rock(50,900);
+        rock2 = new Rock(216,900);
+        rock3 = new Rock(382,900);
+        doubleRock1 = new DoubleRock(200,900);
+        doubleRock2 = new DoubleRock(50,900);
     }
     
     Human getHuman(){

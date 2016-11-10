@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,7 +19,8 @@ public class GameScreen extends ScreenAdapter {
     private Tree tree;
     private DoubleRock doubleRock1;
     private DoubleRock doubleRock2;
-    int speed;
+    int speed=5;
+    float time=0;
     
     public GameScreen(MyGame myGame) {
         this.myGame = myGame;
@@ -44,8 +46,16 @@ public class GameScreen extends ScreenAdapter {
     }
     
     private void update(float delta) {
-        speed = 5;
-        
+        time += delta;
+        if(time>10) {
+            if(speed<=10)
+            speed += 1;
+            time =0;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            time=0;
+            speed=5;
+        }
         if(Gdx.input.isKeyPressed(Keys.LEFT)) {
             human.move(1);
         }
@@ -74,5 +84,8 @@ public class GameScreen extends ScreenAdapter {
         doubleRock1.move(speed);
         doubleRock2.move(speed);
     }
- 
+    public void resetSpeed() {
+        time=0;
+        speed=5;
+    }
 }

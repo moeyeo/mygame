@@ -1,6 +1,8 @@
 
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -75,28 +77,30 @@ public class WorldRenderer {
         Vector2 pos1 = rock1.getPosition();
         Vector2 pos2 = rock2.getPosition();
         Vector2 pos3 = rock3.getPosition();
-        Vector2 posd = doubleRock1.getPosition();
-        Vector2 posd1 = doubleRock2.getPosition();
+        Vector2 posd1 = doubleRock1.getPosition();
+        Vector2 posd2 = doubleRock2.getPosition();
         this.isOver(pos1);
         this.isOver(pos2);
         this.isOver(pos3);
-        this.isOver2(posd);
         this.isOver2(posd1);
+        this.isOver2(posd2);
+        this.posHuman();
         TIME-=delta;
         
         if(gameStage) {
             batch.begin();
-            batch.draw(floorImg, 0, 0);
+            //batch.draw(floorImg, 0, 0);
+            batch.draw(floorImg, treePos.x, treePos.y);
             batch.draw(treeImg, treePos.x, treePos.y);
             batch.draw(treeImg, treePos.x+550, treePos.y);
-            batch.draw(humanImg, humanPos.x, humanPos.y);        
+            batch.draw(humanImg, humanPos.x, humanPos.y);  
             batch.draw(coinImg, coinPos.x, coinPos.y);
             batch.draw(clockImg, clockPos.x, clockPos.y);
             batch.draw(rockImg, pos1.x, pos1.y);
             batch.draw(rockImg, pos2.x, pos2.y);
             batch.draw(rockImg, pos3.x, pos3.y);
-            batch.draw(doubleRockImg, posd.x, posd.y);
-            batch.draw(doubleRockImg, posd1.x, posd1.y);
+            batch.draw(doubleRockImg, posd2.x, posd2.y);
+            batch.draw(doubleRockImg, posd2.x, posd2.y);
             font.draw(batch,""+TIME,250, 850);
             font.draw(batch,""+score,450, 850);
             font.draw(batch,""+bonus,450, 800);
@@ -104,6 +108,8 @@ public class WorldRenderer {
             score += ((int)treePos.y+1-(int)treePos.y);
             this.checkCoin();
             this.checkClock();
+            this.checkRock(pos2);
+            this.checkRock2(posd2);
             this.isTimeOver();
         }
         else {
@@ -111,11 +117,20 @@ public class WorldRenderer {
         }
     }
     
+    private void posHuman(){
+    if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            humanImg = new Texture("human1.png");
+        }
+    if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            humanImg = new Texture("human.png");
+        }
+    }
+    
     private void checkCoin() {
         Vector2 humanPos = human.getPosition();
         Vector2 coinPos = coin.getPosition();
-        if(coinPos.y<humanPos.y+human.height()&&coinPos.y>humanPos.y) {
-            if(coinPos.x>humanPos.x && coinPos.x<humanPos.x+human.width()){
+        if(coinPos.y<humanPos.y+human.height()&&coinPos.y+25>humanPos.y) {
+            if(coinPos.x+20>humanPos.x && coinPos.x+20<humanPos.x+human.width()){
                 coin.delete(coinPos);
                 bonus += 100;
             }
@@ -126,8 +141,8 @@ public class WorldRenderer {
         Vector2 humanPos = human.getPosition();
         Vector2 clockPos = clock.getPosition();
         
-        if(clockPos.y<humanPos.y+human.height()&&clockPos.y>humanPos.y) {
-            if(clockPos.x>humanPos.x && clockPos.x<humanPos.x+human.width()){
+        if(clockPos.y<humanPos.y+human.height()&&clockPos.y+25>humanPos.y) {
+            if(clockPos.x+20>humanPos.x && clockPos.x+20<humanPos.x+human.width()){
                 clock.delete(clockPos);
                 TIME += 10;
             }
@@ -141,8 +156,8 @@ public class WorldRenderer {
         Vector2 pos1 = rock1.getPosition();
         Vector2 pos2 = rock2.getPosition();
         Vector2 pos3 = rock3.getPosition();
-        Vector2 posd = doubleRock1.getPosition();
-        Vector2 posd1 = doubleRock2.getPosition();
+        Vector2 posd1 = doubleRock1.getPosition();
+        Vector2 posd2 = doubleRock2.getPosition();
         batch.begin();
         batch.draw(floorImg, 0, 0);
         batch.draw(treeImg, treePos.x, treePos.y);
@@ -152,12 +167,18 @@ public class WorldRenderer {
         batch.draw(rockImg, pos1.x, pos1.y);
         batch.draw(rockImg, pos2.x, pos2.y);
         batch.draw(rockImg, pos3.x, pos3.y);
-        batch.draw(doubleRockImg, posd.x, posd.y);
         batch.draw(doubleRockImg, posd1.x, posd1.y);
+        batch.draw(doubleRockImg, posd2.x, posd2.y);
         font.draw(batch,"BONUS : "+bonus,250, 400);
         font.draw(batch,"SCORE : "+score,250, 430);
         batch.draw(overImg, 150, 450);
         batch.end();
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+            gameStage = true;
+            score=0;
+            TIME=10;
+            bonus=0;
+        }
     }
     
     private void isTimeOver() {
@@ -168,8 +189,8 @@ public class WorldRenderer {
     private void isOver(Vector2 pos) {
         Vector2 humanPos = human.getPosition();
         if(humanPos.y+human.height()<pos.y+rock1.height() && humanPos.y+human.height()>pos.y) {
-            if((humanPos.x<pos.x+rock1.width() && humanPos.x>pos.x) ||
-               (humanPos.x+human.width()<pos.x+rock1.width() && humanPos.x+human.width()>pos.x)) {
+            if((humanPos.x+15<pos.x+rock1.width() && humanPos.x+15>pos.x) ||
+               (humanPos.x+human.width()-10<pos.x+rock1.width() && humanPos.x+human.width()-10>pos.x)) {
                 gameStage = false;
             }  
         }
@@ -177,11 +198,37 @@ public class WorldRenderer {
     
     private void isOver2(Vector2 pos) {
         Vector2 humanPos = human.getPosition();
-        if(humanPos.y+human.height()<pos.y+rock1.height() && humanPos.y+human.height()>pos.y) {
+        if(humanPos.y-20+human.height()<pos.y+rock1.height() && humanPos.y+human.height()>pos.y) {
             if((humanPos.x<pos.x+doubleRock1.width() && humanPos.x>pos.x) ||
                (humanPos.x+human.width()<pos.x+doubleRock1.width() && humanPos.x+human.width()>pos.x)) {
                 gameStage = false;
             }
         }
-    } 
+    }
+    
+    private void checkRock(Vector2 pos2) {
+        Vector2 pos1 = rock1.getPosition();
+        Vector2 pos3 = rock3.getPosition();
+        Vector2 posd = doubleRock1.getPosition();
+        if((pos1.y+300 >= pos2.y && pos2.y >= pos1.y-150 )&&(pos3.y+300>= pos2.y && pos2.y >= pos3.y-150))
+            pos2.y = -300;
+        
+        if((pos1.y+300 >= posd.y && posd.y >= pos1.y-150 ))
+            posd.y = -300;
+        if((pos2.y+300 >= posd.y && posd.y >= pos1.y-150 ))
+            posd.y = -300;
+    }
+    
+    private void checkRock2(Vector2 posd2) {
+        Vector2 pos1 = rock1.getPosition();
+        Vector2 pos3 = rock3.getPosition();
+        Vector2 posd = doubleRock1.getPosition();
+        if((pos1.y+300 >= posd.y && posd.y >= pos1.y-150 ))
+            posd.y = -300;
+        if((pos3.y+300 >= posd2.y && posd2.y >= pos3.y-150 ))
+            posd2.y = -300;
+        if((posd.y+300 >= posd2.y && posd2.y >= posd.y-150 ))
+            posd2.y = -300;
+        
+    }
 }

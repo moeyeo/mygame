@@ -22,8 +22,8 @@ public class Clock {
     
     public void move(int speed) {
         if(position.y<-50){
-            position.y = rand.nextInt(4000)+900;
-            position.x = rand.nextInt(500)+50;
+            position.y = rand.nextInt(6000)+900;
+            position.x = rand.nextInt(450)+50;
         }
         position.y -= speed;
     }

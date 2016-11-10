@@ -19,8 +19,8 @@ public class DoubleRock {
     }
     
     public void move(int speed) {
-        if(position.y <- 150){
-            //position.y = position.y = rand.nextInt(4000)+1500;
+        if(position.y < -300){
+            //position.y = position.y = 300*(rand.nextInt(12)+3);
             //position.y = 1200;
         }
         position.y -= speed;

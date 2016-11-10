@@ -30,9 +30,9 @@ public class Rock {
     }
     
     public void move(int speed) {
-        if(position.y < -250){
-            position.y = rand.nextInt(3000)+900;
-            position.y = 900;
+        if(position.y <= -300){
+            position.y = rand.nextInt(1800)+900;
+            //position.y = 900;
         }
         position.y -= speed;
     }
