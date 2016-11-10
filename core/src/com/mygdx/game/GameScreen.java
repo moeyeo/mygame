@@ -17,7 +17,8 @@ public class GameScreen extends ScreenAdapter {
     private Rock rock2;
     private Rock rock3;
     private Tree tree;
-    private Rainbow rainbow;
+    private Ball ball;
+    private Shuriken shuriken;
     private DoubleRock doubleRock1;
     private DoubleRock doubleRock2;
     int speed=5;
@@ -30,7 +31,8 @@ public class GameScreen extends ScreenAdapter {
         human = world.getHuman();
         coin = world.getCoin();
         clock = world.getClock();
-        rainbow = world.getRainbow();
+        ball = world.getBall();
+        shuriken = world.getShuriken();
         rock1 = world.getRock(1);
         rock2 = world.getRock(2);
         rock3 = world.getRock(3);
@@ -70,7 +72,8 @@ public class GameScreen extends ScreenAdapter {
             tree.move(speed);
             coin.move(speed);
             clock.move(speed);
-            rainbow.move(speed);
+            ball.move(speed);
+            shuriken.move(speed);
             rock1.move(speed+2);
             rock2.move(speed+2);
             rock3.move(speed+2);
@@ -81,7 +84,8 @@ public class GameScreen extends ScreenAdapter {
         tree.move(speed-2);
         coin.move(speed-2);
         clock.move(speed-2);
-        rainbow.move(speed-2);
+        ball.move(speed-2);
+        shuriken.move(speed-2);
         rock1.move(speed);
         rock2.move(speed);
         rock3.move(speed);

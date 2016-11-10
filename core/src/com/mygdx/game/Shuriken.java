@@ -8,11 +8,11 @@ package com.mygdx.game;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
-public class Rainbow {
+public class Shuriken {
     private Vector2 position;
     Random rand = new Random();
     
-    public Rainbow(int x, int y) {
+    public Shuriken(int x, int y) {
         position = new Vector2(x,y);
     }    
  

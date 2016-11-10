@@ -16,7 +16,8 @@ public class WorldRenderer {
     private Human human;
     private Coin coin;
     private Clock clock;
-    private Rainbow rainbow;
+    private Ball ball;
+    private Shuriken shuriken;
     private Rock rock1;
     private Rock rock2;
     private Rock rock3;
@@ -26,7 +27,8 @@ public class WorldRenderer {
     private Texture humanImg;
     private Texture coinImg;
     private Texture clockImg;
-    private Texture rainbowImg;
+    private Texture ballImg;
+    private Texture shurikenImg;
     private Texture rockImg;
     private Texture treeImg;
     private Texture doubleRockImg;
@@ -35,7 +37,8 @@ public class WorldRenderer {
     private BitmapFont font;
     
     float TIME = 30;
-    float rainbowTime = 0;
+    float ballTime = 0;
+    float invisibleTime = 0;
     int gameStage = 1;
     int bonus = 0;
     int score = 0;
@@ -54,8 +57,11 @@ public class WorldRenderer {
         clock = world.getClock();
         clockImg = new Texture("clock.png");
         
-        rainbow = world.getRainbow();
-        rainbowImg = new Texture("ball.png");
+        ball = world.getBall();
+        ballImg = new Texture("ball.png");
+        
+        shuriken = world.getShuriken();
+        shurikenImg = new Texture("shuriken.png");
         
         rock1 = world.getRock(1);
         rock2 = world.getRock(2);
@@ -82,7 +88,8 @@ public class WorldRenderer {
         Vector2 humanPos = human.getPosition();
         Vector2 coinPos = coin.getPosition();
         Vector2 clockPos = clock.getPosition();
-        Vector2 rainbowPos = rainbow.getPosition();
+        Vector2 ballPos = ball.getPosition();
+        Vector2 shurikenPos = shuriken.getPosition();
         Vector2 pos1 = rock1.getPosition();
         Vector2 pos2 = rock2.getPosition();
         Vector2 pos3 = rock3.getPosition();
@@ -99,7 +106,8 @@ public class WorldRenderer {
             batch.draw(humanImg, humanPos.x, humanPos.y);  
             batch.draw(coinImg, coinPos.x, coinPos.y);
             batch.draw(clockImg, clockPos.x, clockPos.y);
-            batch.draw(rainbowImg, rainbowPos.x, rainbowPos.y);
+            batch.draw(ballImg, ballPos.x, ballPos.y);
+            batch.draw(shurikenImg, shurikenPos.x, shurikenPos.y);
             batch.draw(rockImg, pos1.x, pos1.y);
             batch.draw(rockImg, pos2.x, pos2.y);
             batch.draw(rockImg, pos3.x, pos3.y);
@@ -117,13 +125,18 @@ public class WorldRenderer {
             this.isOver2(posd2);
             this.checkCoin();
             this.checkClock();
-            this.checkRainbow();
+            this.checkBall();
+            this.checkShuriken();
             this.checkRock(pos2);
             this.checkDoubleRock(posd2);
             this.isTimeOver();
         }
         if(gameStage==2) {
-            rainbowStage(delta);
+            ballStage(delta);
+        }
+        
+        if(gameStage==3) {
+            invisibleStage(delta);
         }
         
         if(gameStage==0) {
@@ -169,10 +182,10 @@ public class WorldRenderer {
         }
     }
     
-    private void rainbowStage(float delta) {
+    private void ballStage(float delta) {
         coin.move(8);
         clock.move(8);
-        rainbow.move(8);
+        ball.move(8);
         rock1.move(8);
         tree.move(8);
         rock2.move(8);
@@ -183,16 +196,17 @@ public class WorldRenderer {
         Vector2 humanPos = human.getPosition();
         Vector2 coinPos = coin.getPosition();
         Vector2 clockPos = clock.getPosition();
-        Vector2 rainbowPos = rainbow.getPosition();
+        Vector2 ballPos = ball.getPosition();
+        Vector2 shurikenPos = shuriken.getPosition();
         Vector2 pos1 = rock1.getPosition();
         Vector2 pos2 = rock2.getPosition();
         Vector2 pos3 = rock3.getPosition();
         Vector2 posd1 = doubleRock1.getPosition();
         Vector2 posd2 = doubleRock2.getPosition();
-        rainbowTime -= delta;
-        if(rainbowTime<0){
+        ballTime -= delta;
+        if(ballTime<0){
             gameStage=1;
-            rainbowTime=0;
+            ballTime=0;
         }
         batch.begin();
         batch.draw(floorImg, treePos.x, treePos.y);
@@ -201,7 +215,8 @@ public class WorldRenderer {
         batch.draw(humanImg, humanPos.x, humanPos.y);  
         batch.draw(coinImg, coinPos.x, coinPos.y);
         batch.draw(clockImg, clockPos.x, clockPos.y);
-        batch.draw(rainbowImg, rainbowPos.x, rainbowPos.y);
+        batch.draw(ballImg, ballPos.x, ballPos.y);
+        batch.draw(shurikenImg, shurikenPos.x, shurikenPos.y);
         batch.draw(rockImg, pos1.x, pos1.y);
         batch.draw(rockImg, pos2.x, pos2.y);
         batch.draw(rockImg, pos3.x, pos3.y);
@@ -216,7 +231,53 @@ public class WorldRenderer {
         this.checkClock();
         this.checkRock(pos2);
         this.checkDoubleRock(posd2);
-        this.checkRainbow();
+        this.checkBall();
+        this.checkShuriken();
+        this.isTimeOver();
+    }
+    
+    private void invisibleStage(float delta) {
+        Vector2 treePos = tree.getPosition();
+        Vector2 humanPos = human.getPosition();
+        Vector2 coinPos = coin.getPosition();
+        Vector2 clockPos = clock.getPosition();
+        Vector2 ballPos = ball.getPosition();
+        Vector2 shurikenPos = shuriken.getPosition();
+        Vector2 pos1 = rock1.getPosition();
+        Vector2 pos2 = rock2.getPosition();
+        Vector2 pos3 = rock3.getPosition();
+        Vector2 posd1 = doubleRock1.getPosition();
+        Vector2 posd2 = doubleRock2.getPosition();
+        invisibleTime -= delta;
+        if(invisibleTime<0){
+            gameStage=1;
+            invisibleTime=0;
+        }
+        batch.begin();
+        batch.draw(floorImg, treePos.x, treePos.y);
+        batch.draw(treeImg, treePos.x, treePos.y);
+        batch.draw(treeImg, treePos.x+550, treePos.y);
+        batch.draw(humanImg, humanPos.x, humanPos.y);  
+        batch.draw(coinImg, coinPos.x, coinPos.y);
+        batch.draw(clockImg, clockPos.x, clockPos.y);
+        batch.draw(ballImg, ballPos.x, ballPos.y);
+        batch.draw(shurikenImg, shurikenPos.x, shurikenPos.y);
+        batch.draw(rockImg, pos1.x, pos1.y);
+        batch.draw(rockImg, pos2.x, pos2.y);
+        batch.draw(rockImg, pos3.x, pos3.y);
+        batch.draw(doubleRockImg, posd1.x, posd1.y);
+        batch.draw(doubleRockImg, posd2.x, posd2.y);
+        font.draw(batch,""+TIME,250, 850);
+        font.draw(batch,""+score,450, 850);
+        font.draw(batch,""+bonus,450, 800);
+        batch.end();
+        score += ((int)treePos.y+1-(int)treePos.y);
+        this.checkCoin();
+        this.checkClock();
+        this.checkRock(pos2);
+        this.checkDoubleRock(posd2);
+        this.checkBall();
+        this.checkShuriken();
         this.isTimeOver();
     }
     
@@ -235,6 +296,14 @@ public class WorldRenderer {
             }
             if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 humanImg = new Texture("shuman.png");
+            }
+        }
+        if(gameStage==3){
+            if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                humanImg = new Texture("ihuman1.png");
+            }
+            if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                humanImg = new Texture("ihuman.png");
             }
         }
     }
@@ -262,15 +331,28 @@ public class WorldRenderer {
         }
     }
     
-    private void checkRainbow() {
+    private void checkBall() {
         Vector2 humanPos = human.getPosition();
-        Vector2 rainbowPos = rainbow.getPosition();
+        Vector2 ballPos = ball.getPosition();
         
-        if(rainbowPos.y<humanPos.y+human.height()&&rainbowPos.y+25>humanPos.y) {
-            if(rainbowPos.x+20>humanPos.x && rainbowPos.x+20<humanPos.x+human.width()){
-                rainbow.delete(rainbowPos);
+        if(ballPos.y<humanPos.y+human.height()&&ballPos.y+25>humanPos.y) {
+            if(ballPos.x+20>humanPos.x && ballPos.x+20<humanPos.x+human.width()){
+                ball.delete(ballPos);
                 gameStage=2;
-                rainbowTime+=5;
+                ballTime+=5;
+            }
+        }
+    }
+    
+    private void checkShuriken() {
+        Vector2 humanPos = human.getPosition();
+        Vector2 shurikenPos = shuriken.getPosition();
+        
+        if(shurikenPos.y<humanPos.y+human.height()&&shurikenPos.y+25>humanPos.y) {
+            if(shurikenPos.x+20>humanPos.x && shurikenPos.x+20<humanPos.x+human.width()){
+                shuriken.delete(shurikenPos);
+                gameStage=3;
+                invisibleTime+=5;
             }
         }
     }
@@ -282,7 +364,7 @@ public class WorldRenderer {
     
     private void isOver(Vector2 pos) {
         Vector2 humanPos = human.getPosition();
-        if(humanPos.y+human.height()<pos.y+rock1.height() && humanPos.y+human.height()>pos.y) {
+        if(humanPos.y+human.height()-15<pos.y+rock1.height() && humanPos.y+human.height()-15>pos.y) {
             if((humanPos.x+15<pos.x+rock1.width() && humanPos.x+15>pos.x) ||
                (humanPos.x+human.width()-10<pos.x+rock1.width() && humanPos.x+human.width()-10>pos.x)) {
                 gameStage = 0;
@@ -292,7 +374,7 @@ public class WorldRenderer {
     
     private void isOver2(Vector2 pos) {
         Vector2 humanPos = human.getPosition();
-        if(humanPos.y-20+human.height()<pos.y+rock1.height() && humanPos.y+human.height()>pos.y) {
+        if(humanPos.y-15+human.height()<pos.y+rock1.height() && humanPos.y+human.height()-15>pos.y) {
             if((humanPos.x<pos.x+doubleRock1.width() && humanPos.x>pos.x) ||
                (humanPos.x+human.width()<pos.x+doubleRock1.width() && humanPos.x+human.width()>pos.x)) {
                 gameStage = 0;
