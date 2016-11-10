@@ -10,6 +10,7 @@ public class Rock {
     private Vector2 rockSize;
     private int WIDTH = 160,HEIGHT = 160;
     Random rand = new Random();
+    int speed=0;
     
  
     public Rock(int x, int y) {
@@ -31,8 +32,7 @@ public class Rock {
     
     public void move(int speed) {
         if(position.y <= -300){
-            position.y = rand.nextInt(1800)+900;
-            //position.y = 900;
+            position.y = rand.nextInt(1600)+900;
         }
         position.y -= speed;
     }

@@ -4,10 +4,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
-/**
- *
- * @author Moeyeo
- */
 public class Clock {
     private Vector2 position;
     Random rand = new Random();
@@ -22,7 +18,7 @@ public class Clock {
     
     public void move(int speed) {
         if(position.y<-50){
-            position.y = rand.nextInt(6000)+900;
+            position.y = rand.nextInt(6000)+1500;
             position.x = rand.nextInt(450)+50;
         }
         position.y -= speed;

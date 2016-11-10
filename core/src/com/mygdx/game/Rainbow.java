@@ -8,11 +8,11 @@ package com.mygdx.game;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Random;
 
-public class Coin {
+public class Rainbow {
     private Vector2 position;
     Random rand = new Random();
     
-    public Coin(int x, int y) {
+    public Rainbow(int x, int y) {
         position = new Vector2(x,y);
     }    
  
@@ -22,13 +22,14 @@ public class Coin {
     
     public void move(int speed) {
         if(position.y<-50){
-            position.y = rand.nextInt(4000)+1200;
-            position.x = rand.nextInt(450)+50;
+            position.y = rand.nextInt(9000)+2700;
+            position.x = rand.nextInt(400)+50;
         }
         position.y -= speed;
     }
     
     public void delete(Vector2 pos) {
         position.y = -50;
-    }   
+    } 
+    
 }

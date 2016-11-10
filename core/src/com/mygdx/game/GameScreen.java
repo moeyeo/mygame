@@ -17,6 +17,7 @@ public class GameScreen extends ScreenAdapter {
     private Rock rock2;
     private Rock rock3;
     private Tree tree;
+    private Rainbow rainbow;
     private DoubleRock doubleRock1;
     private DoubleRock doubleRock2;
     int speed=5;
@@ -29,6 +30,7 @@ public class GameScreen extends ScreenAdapter {
         human = world.getHuman();
         coin = world.getCoin();
         clock = world.getClock();
+        rainbow = world.getRainbow();
         rock1 = world.getRock(1);
         rock2 = world.getRock(2);
         rock3 = world.getRock(3);
@@ -39,13 +41,13 @@ public class GameScreen extends ScreenAdapter {
     
     @Override
     public void render(float delta) {
-        update(delta);
+        update(delta,speed);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         worldRenderer.render(delta);
     }
     
-    private void update(float delta) {
+    private void update(float delta,int speed) {
         time += delta;
         if(time>10) {
             if(speed<=10)
@@ -68,6 +70,7 @@ public class GameScreen extends ScreenAdapter {
             tree.move(speed);
             coin.move(speed);
             clock.move(speed);
+            rainbow.move(speed);
             rock1.move(speed+2);
             rock2.move(speed+2);
             rock3.move(speed+2);
@@ -78,14 +81,14 @@ public class GameScreen extends ScreenAdapter {
         tree.move(speed-2);
         coin.move(speed-2);
         clock.move(speed-2);
+        rainbow.move(speed-2);
         rock1.move(speed);
         rock2.move(speed);
         rock3.move(speed);
         doubleRock1.move(speed);
         doubleRock2.move(speed);
     }
-    public void resetSpeed() {
-        time=0;
-        speed=5;
+    public void increaseSpeed(int x) {
+        speed+=x;
     }
 }

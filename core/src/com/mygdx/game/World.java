@@ -13,6 +13,7 @@ public class World {
     private MyGame myGame;
     private Coin coin;
     private Clock clock;
+    private Rainbow rainbow;
     private Rock rock1;
     private Rock rock2;
     private Rock rock3;
@@ -25,8 +26,9 @@ public class World {
         this.myGame = myGame;
         human = new Human(50,50);
         tree = new Tree(0,0);
-        coin = new Coin(rand.nextInt(500)+50,900);
-        clock = new Clock(rand.nextInt(500)+50,2000);
+        coin = new Coin(rand.nextInt(450)+50,900);
+        clock = new Clock(rand.nextInt(450)+50,2000);
+        rainbow = new Rainbow(rand.nextInt(450)+50,3000);
         rock1 = new Rock(50,900);
         rock2 = new Rock(216,900);
         rock3 = new Rock(382,900);
@@ -44,6 +46,10 @@ public class World {
     
     Clock getClock(){
         return clock;
+    }
+    
+    Rainbow getRainbow(){
+        return rainbow;
     }
     
     Tree getTree(){
