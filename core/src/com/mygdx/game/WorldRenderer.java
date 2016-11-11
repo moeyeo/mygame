@@ -176,9 +176,12 @@ public class WorldRenderer {
         this.checkDoubleRock(posd2);
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             gameStage = 1;
+            ballTime = 0;
+            invisibleTime =0;
             score=0;
             TIME=10;
             bonus=0;
+            this.posHuman();
         }
     }
     
@@ -204,9 +207,10 @@ public class WorldRenderer {
         Vector2 posd1 = doubleRock1.getPosition();
         Vector2 posd2 = doubleRock2.getPosition();
         ballTime -= delta;
-        if(ballTime<0){
+        if(ballTime<=0){
             gameStage=1;
             ballTime=0;
+            this.posHuman();
         }
         batch.begin();
         batch.draw(floorImg, treePos.x, treePos.y);
@@ -248,10 +252,12 @@ public class WorldRenderer {
         Vector2 pos3 = rock3.getPosition();
         Vector2 posd1 = doubleRock1.getPosition();
         Vector2 posd2 = doubleRock2.getPosition();
+        this.posHuman();
         invisibleTime -= delta;
-        if(invisibleTime<0){
+        if(invisibleTime<=0){
             gameStage=1;
             invisibleTime=0;
+            this.posHuman();
         }
         batch.begin();
         batch.draw(floorImg, treePos.x, treePos.y);
@@ -282,7 +288,7 @@ public class WorldRenderer {
     }
     
     private void posHuman(){
-        if(gameStage==1){
+        if(gameStage==1||gameStage==0){
             if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 humanImg = new Texture("human1.png");
             }

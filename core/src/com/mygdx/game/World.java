@@ -30,7 +30,7 @@ public class World {
         coin = new Coin(rand.nextInt(450)+50,900);
         clock = new Clock(rand.nextInt(450)+50,2000);
         ball = new Ball(rand.nextInt(450)+50,3000);
-        shuriken = new Shuriken (rand.nextInt(450)+50,3000);
+        shuriken = new Shuriken (rand.nextInt(450)+50,2500);
         rock1 = new Rock(50,900);
         rock2 = new Rock(216,900);
         rock3 = new Rock(382,900);
