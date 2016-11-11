@@ -43,18 +43,19 @@ public class GameScreen extends ScreenAdapter {
     
     @Override
     public void render(float delta) {
-        update(delta,speed);
+        update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         worldRenderer.render(delta);
     }
     
-    private void update(float delta,int speed) {
+    private void update(float delta) {
         time += delta;
-        if(time>10) {
-            if(speed<=10)
-            speed += 1;
-            time =0;
+        if(time > 10) {
+            if(speed <= 10){
+                speed += 1;
+            }
+            time = 0;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
             time=0;
@@ -91,8 +92,5 @@ public class GameScreen extends ScreenAdapter {
         rock3.move(speed);
         doubleRock1.move(speed);
         doubleRock2.move(speed);
-    }
-    public void increaseSpeed(int x) {
-        speed+=x;
     }
 }

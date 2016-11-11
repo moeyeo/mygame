@@ -6,7 +6,6 @@
 package com.mygdx.game;
 
 import java.util.Random;
-import java.util.Timer;
 
 public class World {
     private Human human;
@@ -63,27 +62,27 @@ public class World {
     }
     
     Rock getRock(int x){
-        if (x == 1) {
-            return rock1;
-        }
-        else if (x == 2) {
-            return rock2;
-        }
-        else if (x == 3) {
-            return rock3;
+        switch (x) {
+            case 1:
+                return rock1;
+            case 2:
+                return rock2;
+            case 3:
+                return rock3;
+            default:
+                break;
         }
         return rock1;
     }
     
     DoubleRock getDoubleRock(int x){
-        if (x == 1) {
-            return doubleRock1;
-        }
-        else if (x == 2) {
-            return doubleRock2;
-        }
-        else {
-            return doubleRock1;
+        switch (x) {
+            case 1:
+                return doubleRock1;
+            case 2:
+                return doubleRock2;
+            default:
+                return doubleRock1;
         }
     }
 }
