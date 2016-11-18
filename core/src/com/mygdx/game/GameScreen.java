@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
  
 public class GameScreen extends ScreenAdapter {
@@ -81,7 +82,6 @@ public class GameScreen extends ScreenAdapter {
             doubleRock1.move(speed+2);
             doubleRock2.move(speed+2);
         }
-        
         tree.move(speed-2);
         coin.move(speed-2);
         clock.move(speed-2);

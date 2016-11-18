@@ -5,6 +5,8 @@
  */
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import java.util.Random;
 
 public class World {
@@ -20,7 +22,10 @@ public class World {
     private Tree tree;
     private DoubleRock doubleRock1;
     private DoubleRock doubleRock2;
+    Sound sound = Gdx.audio.newSound(Gdx.files.internal("theme.wav"));
+    long id = sound.play(1.0f);
     Random rand = new Random();
+    
     
     World(MyGame myGame) {
         this.myGame = myGame;
@@ -35,6 +40,7 @@ public class World {
         rock3 = new Rock(382,900);
         doubleRock1 = new DoubleRock(200,900);
         doubleRock2 = new DoubleRock(50,900);
+        sound.setLooping(id, true);
     }
     
     Human getHuman(){
